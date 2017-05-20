@@ -1,0 +1,56 @@
+				load r0, @unos
+				load r1, @greska
+				load r5, @ispis
+				move r6, 0 ;rezultat
+				move r2, 0
+				move r3, 1
+				move r11, 2
+				
+				call @unesi
+				push r4 ;uneseni broj je u r4
+				call @fibonacci
+				echo r5
+				echo r6
+				halt
+
+#potprogram za unos
+@unesi:			echo r0
+				input @broj			
+				jumpIfTrue @dobar
+				echo r1
+				jump @unesi
+@dobar:			load r4, @broj
+				ret
+				
+#rekurzivni potprogram
+@fibonacci:		pop r10 ;povratna adresa
+				pop r4 ;trenutna vrijednost
+				push r10 ;vrati povratnu adresu
+				testEquals r4, r2
+				jumpIfTrue @gotov
+				testEquals r4, r11
+				jumpIfTrue @povecaj
+				testEquals r4, r3 
+				jumpIfTrue @povecaj
+				push r4			;pamti trenutnu vrijednost za iduci rekurzivni poziv
+				decrement r4
+				push r4
+				call @fibonacci
+				pop r4			
+				move r11, -2 
+				add r4, r11, r4
+				push r4
+				call @fibonacci
+				ret
+@povecaj:		increment r6			
+@gotov:			ret
+														
+
+@broj: 		DEFINT 0
+@unos:		DEFSTR "Unesite broj za koji želite izračun Fibonaccijevog niza: "
+@greska: 	DEFSTR "Unos nije moguće protumačiti kao cijeli broj!\n"
+@ispis:  	DEFSTR "Rezultat je: "
+
+#stog
+			RESERVE:19
+@stackTop:	RESERVE

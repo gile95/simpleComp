@@ -1,0 +1,16 @@
+load r7, @poruka ; ucitaj poruku u r7
+echo r7 ; ispisi na konzolu poruku
+halt ; zaustavi procesor
+@poruka: DEFSTR "Hello World!\n"
+
+
+#u zakomentiranom primjeru dolje ispisujem "Hello World!" (koji je na lokaciji 5 u memoriji) pomoću
+#direktnog i indirektnog adresiranja
+
+#load r7, @poruka ; ucitaj poruku u r7 					;mem lokacija 0
+#load r6, @a ; ucitaj broj 6 u r6						;mem lokacija 1
+#echo r7 ; ispisi na konzolu poruku						;mem lokacija 2
+#echo [r6-1]	; ispisi ono sto je na lokaciji 5		;mem lokacija 3
+#halt ; zaustavi procesor								;mem lokacija 4
+#@poruka: DEFSTR "Hello World!\n"						;mem lokacija 5
+#@a: DEFINT 6    										;mem lokacija 6

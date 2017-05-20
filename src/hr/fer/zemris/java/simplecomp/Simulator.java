@@ -12,7 +12,8 @@ import hr.fer.zemris.java.simplecomp.parser.InstructionCreatorImpl;
 import hr.fer.zemris.java.simplecomp.parser.ProgramParser;
 
 /**
- * Program koji pokreće implementaciju ovog računala.
+ * Program koji pokreće implementaciju ovog računala. Program izvršava kod koji primi kao argument. 
+ * Primjeri kodova dani su u direktoriju /examples.
  * @author Mislav Gillinger
  * @version 1.0
  */

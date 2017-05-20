@@ -1,0 +1,30 @@
+		load r1, @poruka1;
+		load r2, @poruka2;
+		load r3, @poruka3;
+		load r4, @poruka4;
+		move r5, 5;
+		move r6, 0;
+		
+@go:	echo r1
+		input @lokacija;
+		jumpIfTrue @ok;
+		echo r2;
+		jump @go;
+		
+@ok:	load r7, @lokacija;
+		echo r3;
+@b:		testEquals r6, r5;
+		jumpIfTrue @kraj;
+		increment r7;
+		echo r7;
+		echo r4;
+		increment r6;
+		jump @b;
+		
+@kraj:		halt;
+
+@lokacija:  DEFINT 100
+@poruka1:	DEFSTR "Unesite početni broj: "
+@poruka2:	DEFSTR "Unos nije moguće protumačiti kao cijeli broj.\n"
+@poruka3:	DEFSTR "Sljedećih 5 brojeva je:\n" 
+@poruka4: 	DEFSTR "\n"
